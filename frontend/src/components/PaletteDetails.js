@@ -73,10 +73,11 @@ const PaletteDetails = ({palette}) => {
             </div>
             <div className="iibox stack-top" style={{opacity:'100%'}}>
               <span className="box_shadow" onClick={handleClick}><Delete/></span>
-              <h4 className='' style={{ width: 'max-content', marginBottom:'20px'}}><Link to={`/generate/${palette.colors}&count=${palette.colorCount}`} className='link box_shadow'>{palette.title}</Link></h4>
+              <h4 className='' style={{ width: 'max-content', marginBottom:'20px'}}><Link to={`/generate/${palette.colors}`} className='link box_shadow'>{palette.title}</Link></h4>
               <p className='' style={{width: 'max-content', marginTop:'8px'}}><strong>Base Color: </strong>#{palette.colors}</p>
               <p className='' style={{width: 'max-content'}}>Created {formatDistanceToNow(new Date(palette.createdAt), {addSuffix: true})}</p>
             </div>
+        
     </div>
   )
 }

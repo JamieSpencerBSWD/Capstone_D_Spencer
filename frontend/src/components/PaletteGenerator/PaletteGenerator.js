@@ -82,7 +82,7 @@ const PaletteGenerator = () => {
       console.log(singlecolor)
       console.log("TITLE: " + title)
       console.log("COLORS: " + colors)
-      const palette = {title, colors, colorCount}
+      const palette = {title, colors}
     
       const response = await fetch('/api/palettes', {
         method: 'POST',

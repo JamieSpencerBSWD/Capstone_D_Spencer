@@ -11,10 +11,6 @@ const paletteSchema = new Schema({
         type:String,
         required:true
     },
-    colorCount:{
-        type:String,
-        required:true
-    },
     user_id:{
         type:String,
         required:true
