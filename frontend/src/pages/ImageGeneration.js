@@ -5,7 +5,8 @@ import { ImagePalette } from '../components/ImagePalette/ImagePalette';
 const ImageGeneration = () =>{
     return(
         <div>
-            <ImagePalette/>
+            Still in progress, check back later
+            {/* <ImagePalette/> */}
         </div>
     )
 }

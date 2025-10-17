@@ -397,5 +397,4 @@ const PaletteGenerator = () => {
       </div>
     );
 }
-
 export default PaletteGenerator
