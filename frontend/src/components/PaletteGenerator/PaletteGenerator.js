@@ -79,9 +79,6 @@ const PaletteGenerator = () => {
         setError('You must be logged in before performing this action.')
         return
       }
-      console.log(singlecolor)
-      console.log("TITLE: " + title)
-      console.log("COLORS: " + colors)
       const palette = {title, colors}
     
       const response = await fetch('/api/palettes', {
@@ -120,7 +117,6 @@ const PaletteGenerator = () => {
       }
       setTimeout(200)
       setHexCode(s)
-      executeScroll()
     };
 
     const handleColorChange= (color) => {
@@ -136,7 +132,6 @@ const PaletteGenerator = () => {
 
     const getBaseColor = async () => {
       if (hexCode.toString().match(/([0-9a-fA-F]{3}){1,2}/)){
-        navigate(`/generate/${hexCode}`);
         //https://www.thecolorapi.com/id?format=json&named=false&hex=${hexCode}
         const result = await axios.get(`https://www.thecolorapi.com/id?hex=${hexCode}`)
         setSingleColor(result.data)
@@ -160,7 +155,7 @@ const PaletteGenerator = () => {
       if (hexCode.toString().match(/([0-9a-fA-F]{3}){1,2}/)){
         const results = await axios.get(`https://www.thecolorapi.com/scheme?hex=${hexCode}&mode=${generationMode}&count=${colorCount}`)
         setColorData(results.data.colors)
-        if(results.data.colors[0].hex.clean === '000000' || results.data.colors[0].hex.clean === 'FFFFFF'){
+        if(results.data.colors[0,1,2].hex.clean === '000000' || results.data.colors[0,1,2].hex.clean === 'FFFFFF'){
           navigate('/')
         }
         else(
@@ -189,7 +184,6 @@ const PaletteGenerator = () => {
       setTimeout(200)
       getData()
       getBaseColor()
-      executeScroll()
     }
 
     const toggleColorPicker = () => {
@@ -230,14 +224,6 @@ const PaletteGenerator = () => {
     }
 
     const colorPalette = useRef(null)
-
-    const executeScroll = () => {
-      console.log("scroll locked")
-      //colorPalette.current.scrollIntoView() 
-      //setTimeout(2000)
-      //setDisplayShown(!displayShown)
-      //setDisplayMode('hidden')
-    }
 
 
     return (

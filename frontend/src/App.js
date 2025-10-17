@@ -9,7 +9,6 @@ import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Generate from './pages/Generate';
-import ImageGeneration from './pages/ImageGeneration';
 import Color from './pages/Color';
 
 
@@ -37,10 +36,6 @@ function App() {
             <Route
               path='/generate'
               element={<Generate/>}
-            />
-            <Route
-              path='/image'
-              element={<ImageGeneration/>}
             />
             <Route
               path='/profile'

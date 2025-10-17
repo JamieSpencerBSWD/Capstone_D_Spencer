@@ -1,10 +1,12 @@
 import React from 'react'
 import {useState} from 'react'
 // import {LockOpenOutlined, Lock} from '@material-ui/icons';
-import {SwapHoriz } from '@material-ui/icons';
+import {SwapHoriz} from '@material-ui/icons';
+import ColorizeIcon from '@mui/icons-material/Colorize';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import { ChromePicker } from 'react-color';
 // import BrushIcon from '@mui/icons-material/Brush';
 // import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import {
@@ -17,6 +19,24 @@ const Color = ({color}) => {
   const [blendingMode, setBlendingMode] = useState('normal');
   const [blindnessMode, setBlindnessMode] = useState('no filter');
   var blinder = require('color-blind');
+  const [displayShown, setDisplayShown] = useState(true);
+  const [displayMode, setDisplayMode] = useState('hidden');
+  const [hex, setHex] = useState()
+  const [hexCode, setHexCode] = useState();
+  const [state, setState] = useState({
+        background: '#fff',
+      })
+
+  const toggleColorPicker = () => {
+      if(displayShown === true){
+        setDisplayMode('visible')
+        
+      }
+      if(displayShown === false){
+        setDisplayMode('hidden')
+      }
+      setDisplayShown(!displayShown)
+    }
   
   const handleSelect=(e)=>{
     setBlendingMode(e)
@@ -32,6 +52,30 @@ const Color = ({color}) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
   
+  const handleChangeComplete = (color) => {
+      setState({ background: color.hex });
+      var s = color.hex.toString();
+      while(s.charAt(0) === '#')
+      {
+      s = s.substring(1);
+      }
+      setTimeout(200)
+      setHexCode(s)
+      console.log(hexCode)
+      console.log("Change Complete") 
+    };
+
+    const handleColorChange= (color) => {
+      setState({ background: color.hex });
+      var s = color.hex.toString();
+      while(s.charAt(0) === '#')
+      {
+      s = s.substring(1);
+      }
+      setHexCode(s)
+      console.log("Changing") 
+      //setDisplayMode('hidden'?'shown':'hidden')
+    };
 
   return (
     //array of locked colors, 
@@ -56,6 +100,18 @@ const Color = ({color}) => {
               <ContentCopyIcon fontSize='large' className='center-item' />
             </CopyToClipboard>
           </div>
+
+          <div className='button' onClick={toggleColorPicker}><ColorizeIcon fontSize='large'/></div>
+          <div id="container" style={{visibility:displayMode}}>
+                            <div id="infoi">
+                              <ChromePicker
+                              color={ hex?"#" + hexCode: state.background }
+                              onChange={handleColorChange}
+                              onChangeComplete={ handleChangeComplete }
+                              className='overlayed'
+                              />
+                            </div>
+                          </div>
 
           {/* <div className='clear-button flex-item remove' onClick={() => setLocked(!locked)}>{locked? <Lock fontSize='large'/>: <LockOpenOutlined fontSize='large'/>}</div> */}
           <div style={{color: `${color.contrast.value}`}} className='col m-0 p-2 text-size-large text-weight-thick remove'>

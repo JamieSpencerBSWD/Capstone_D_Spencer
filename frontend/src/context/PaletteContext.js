@@ -26,7 +26,7 @@ export const palettesReducer = (state, action) =>{
 
 export const PaletteContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(palettesReducer, {
-        palettes:null
+        palettes:[]
     })
 
     return(
