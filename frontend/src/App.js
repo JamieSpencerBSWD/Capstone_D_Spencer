@@ -12,6 +12,7 @@ import Generate from './pages/Generate';
 import Color from './pages/Color';
 
 
+
 function App() {
   const {user} = useAuthContext()
 

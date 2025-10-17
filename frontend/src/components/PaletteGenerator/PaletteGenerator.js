@@ -155,15 +155,12 @@ const PaletteGenerator = () => {
       if (hexCode.toString().match(/([0-9a-fA-F]{3}){1,2}/)){
         const results = await axios.get(`https://www.thecolorapi.com/scheme?hex=${hexCode}&mode=${generationMode}&count=${colorCount}`)
         setColorData(results.data.colors)
-        if(results.data.colors[0,1,2].hex.clean === '000000' || results.data.colors[0,1,2].hex.clean === 'FFFFFF'){
+        if(results.data.colors[0,1||2] && results.data.colors[0,1||2].hex.clean == '000000' ||  results.data.colors[0,1||2] && results.data.colors[0,1||2].hex.clean == 'FFFFFF'){
           navigate('/')
         }
         else(
           console.log(results.data)
         )
-      }else{
-        const results = await axios.get(`https://www.thecolorapi.com/scheme?hex=123456&mode=analogic&count=5`)
-        setColorData(results.data.colors)
       }
     }
 
@@ -236,7 +233,7 @@ const PaletteGenerator = () => {
               <div id="container" style={{visibility:displayMode}}>
                   <div id="infoi">
                     <ChromePicker
-                    color={ hex?"#" + hexCode: state.background }
+                    color={ hex?state.background:"#" + hexCode  }
                     onChange={handleColorChange}
                     onChangeComplete={ handleChangeComplete }
                     className='overlayed'

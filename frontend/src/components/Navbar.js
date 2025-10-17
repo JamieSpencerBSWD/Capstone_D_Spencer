@@ -13,10 +13,7 @@ const Navbar = () => {
     logout()
   }
   return (
-    <header>
-      <BurgerMenu/>
-        <div className='container'>
-            
+        <div className='headerContainer'>
             <Link to="/">
                 <p className='title text-size-large'>
                   <img src='../../logo192.png' style={{width:'25px', margin:'7px'}} alt=""/>
@@ -39,7 +36,6 @@ const Navbar = () => {
               
             </nav>
         </div>
-    </header>
   )
 }
 

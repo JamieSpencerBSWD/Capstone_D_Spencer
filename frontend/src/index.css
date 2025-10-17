@@ -159,32 +159,33 @@ body {
   font-family: "Poppins";
 }
 header {
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
-  background: #fff;
+  
 }
-header .container {
-  max-width: 1400px;
+.headerContainer {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  background: #fff;
+  width: 100%;
+  max-height: 50px;
   margin: 0 auto;
   padding: 10px 20px;
   display: flex;
   align-items: center;
+  align-content: stretch;
   justify-content: space-between;
 }
-header a:link {
+.headerContainer a:link {
   text-decoration: none;
   color: #333;
 }
-header a:visited {
+.headerContainer a:visited {
   text-decoration: none;
   color: #333;
 }
-header a:hover {
+.headerContainer a:hover {
   text-decoration: none;
   color: #c3c3c3;
 }
-header a:active {
+.headerContainer a:active {
   text-decoration: none;
   color: #c3c3c3;
 }
