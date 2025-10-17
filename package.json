@@ -1,24 +1,70 @@
 {
+  "proxy": "http://localhost:4000",
   "name": "capstone",
-  "version": "1.0.0",
-  "description": "",
-  "main": "package.js",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.9",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.0.0",
+    "bootstrap": "^5.2.2",
+    "color-blind": "^0.1.3",
+    "date-fns": "^2.29.3",
+    "downloadjs": "^1.4.7",
+    "gh-pages": "^4.0.0",
+    "html2canvas": "^1.4.1",
+    "material-ui": "^0.15.0",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
+    "react-burger-menu": "^3.0.8",
+    "react-color": "^2.19.3",
+    "react-color-extractor": "^1.1.2",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-dom": "^18.2.0",
+    "react-image-palette": "^0.2.4",
+    "react-redux": "^8.0.4",
+    "react-router": "^6.4.2",
+    "react-router-dom": "^6.4.2",
+    "react-scripts": "^2.1.3",
+    "react-share": "^4.4.1",
+    "react-spinkit": "^3.0.0",
+    "styled-components": "^5.3.6",
+    "timeago.js": "^4.0.2",
+    "use-image-color": "^0.0.8",
+    "web-vitals": "^2.1.4"
+  },
   "scripts": {
-    "start_backend": "cd backend && npm start",
-    "start_frontend": "cd frontend && npm start",
-    "build": "npm run start_backend && npm run start_frontend",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DakotaSpencer/Capstone_D_Spencer.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/DakotaSpencer/Capstone_D_Spencer/issues"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
-  "homepage": "https://github.com/DakotaSpencer/Capstone_D_Spencer#readme"
+  "devDependencies": {
+    "@types/downloadjs": "^1.4.3"
+  }
 }
