@@ -1,5 +1,5 @@
-import { Delete } from '@material-ui/icons';
-import React, {useState, useEffect} from 'react'
+import DeleteIcon from '@mui/icons-material/Delete';
+import React, {useState, useEffect, useCallback} from 'react'
 import {usePalettesContext} from '../hooks/usePalettesContext'
 import {useAuthContext} from '../hooks/useAuthContext';
 import axios from 'axios'
@@ -18,9 +18,9 @@ const PaletteDetails = ({palette}) => {
   useEffect(() => {
     setHexCode(palette.colors.toString())
     getData()
-  },[])
+  }, [])
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     if (hexCode.toString().match(/([0-9a-fA-F]{3}){1,2}/)){
       const results = await axios.get(`https://www.thecolorapi.com/scheme?hex=${hexCode}&mode=analogic&count=5`)
       setColorData(results.data.colors)
@@ -33,7 +33,7 @@ const PaletteDetails = ({palette}) => {
       const results = await axios.get(`https://www.thecolorapi.com/scheme?hex=123456&mode=analogic&count=5`)
       setColorData(results.data.colors)
     }
-  }
+  }, [hexCode, navigate])
 
   const handleClick = async() => {
     if(!user){
@@ -72,7 +72,7 @@ const PaletteDetails = ({palette}) => {
               </div>
             </div>
             <div className="iibox stack-top" style={{opacity:'100%'}}>
-              <span className="box_shadow" onClick={handleClick}><Delete/></span>
+              <span className="box_shadow" onClick={handleClick}><DeleteIcon/></span>
               <h4 className='' style={{ width: 'max-content', marginBottom:'20px'}}><Link to={`/generate/${palette.colors}`} className='link box_shadow'>{palette.title}</Link></h4>
               <p className='' style={{width: 'max-content', marginTop:'8px'}}><strong>Base Color: </strong>#{palette.colors}</p>
               <p className='' style={{width: 'max-content'}}>Created {formatDistanceToNow(new Date(palette.createdAt), {addSuffix: true})}</p>

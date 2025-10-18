@@ -11,7 +11,8 @@ import DownloadOutlined from '@mui/icons-material/Download';
 import downloadjs from 'downloadjs';
 import html2canvas from 'html2canvas';
 import BaseColor from '../BaseColor/BaseColor';
-import { CloudUpload, ShareRounded } from '@material-ui/icons';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import ShareRoundedIcon from '@mui/icons-material/ShareRounded';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { ChromePicker } from 'react-color';
 import ColorizeIcon from '@mui/icons-material/Colorize';
@@ -131,14 +132,17 @@ const PaletteGenerator = () => {
     };
 
     const getBaseColor = async () => {
+      let result = {}
+      //setSingleColor({})
       if (hexCode.toString().match(/([0-9a-fA-F]{3}){1,2}/)){
         //https://www.thecolorapi.com/id?format=json&named=false&hex=${hexCode}
-        const result = await axios.get(`https://www.thecolorapi.com/id?hex=${hexCode}`)
-        setSingleColor(result.data)
+        result = await axios.get(`https://www.thecolorapi.com/id?hex=${hexCode}`)
+        //setSingleColor(result.data)
       }else{
-        const result = await axios.get(`https://www.thecolorapi.com/id?hex=123456`)
-        setSingleColor(result.data)
+        result = await axios.get(`https://www.thecolorapi.com/id?hex=123456`)
+        //setSingleColor(result.data)
       }
+      setSingleColor(result.data)
     }
     
     const savePalette = () => {
@@ -155,9 +159,16 @@ const PaletteGenerator = () => {
       if (hexCode.toString().match(/([0-9a-fA-F]{3}){1,2}/)){
         const results = await axios.get(`https://www.thecolorapi.com/scheme?hex=${hexCode}&mode=${generationMode}&count=${colorCount}`)
         setColorData(results.data.colors)
-        if(results.data.colors[0,1||2] && results.data.colors[0,1||2].hex.clean == '000000' ||  results.data.colors[0,1||2] && results.data.colors[0,1||2].hex.clean == 'FFFFFF'){
-          navigate('/')
-        }
+        const colors = results.data.colors || [];
+
+        const firstThree = colors.slice(0, 3); // get first 3 colors
+        const valid = ['000000', 'FFFFFF'];
+
+        const allBlackOrWhite =
+          firstThree.length === 3 &&
+          firstThree.map(c => c?.hex.clean).every(hex => valid.includes(hex));
+
+        if (allBlackOrWhite) navigate('/');
         else(
           console.log(results.data)
         )
@@ -278,10 +289,10 @@ const PaletteGenerator = () => {
               <DownloadOutlined /><div className='m-1'>Download</div>
             </h3>
             <h3 className='center button text-size-medium m-2 p-2' onClick={savePalette}>
-              <CloudUpload className='m-0_2'/><div className='m-1'>Save Palette</div>
+              <CloudUploadIcon className='m-0_2'/><div className='m-1'>Save Palette</div>
             </h3>
             <h3 className='center button text-size-medium m-2 p-2' onClick={sharePalette}>
-              <ShareRounded className='m-0_2'/><div className='m-1'>Share Palette</div>
+              <ShareRoundedIcon className='m-0_2'/><div className='m-1'>Share Palette</div>
             </h3>
           </div>
             {user?

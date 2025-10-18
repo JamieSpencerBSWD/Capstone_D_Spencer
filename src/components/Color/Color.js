@@ -1,7 +1,7 @@
 import React from 'react'
 import {useState} from 'react'
 // import {LockOpenOutlined, Lock} from '@material-ui/icons';
-import {SwapHoriz} from '@material-ui/icons';
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import ColorizeIcon from '@mui/icons-material/Colorize';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
@@ -21,7 +21,7 @@ const Color = ({color}) => {
   var blinder = require('color-blind');
   const [displayShown, setDisplayShown] = useState(true);
   const [displayMode, setDisplayMode] = useState('hidden');
-  const [hex, setHex] = useState()
+  const hex = '';
   const [hexCode, setHexCode] = useState();
   const [state, setState] = useState({
         background: '#fff',
@@ -91,7 +91,7 @@ const Color = ({color}) => {
             <h3 className='text-weight-thick p-2 m-2 flex-item'>{color.name.value}</h3>
           </Link>
           
-          <div className='clear-button text-size-small' onClick={() => setHexShown(!hexShown)}>{hexShown? <div><SwapHoriz fontSize='large'/>{color.hex.value}</div>: <div><SwapHoriz fontSize='large'/>{color.rgb.value}</div>}</div>
+          <div className='clear-button text-size-small' onClick={() => setHexShown(!hexShown)}>{hexShown? <div><SwapHorizIcon fontSize='large'/>{color.hex.value}</div>: <div><SwapHorizIcon fontSize='large'/>{color.rgb.value}</div>}</div>
           
           <div className='center text-size-medium hsl'>{color.hsl.value}</div>
 
