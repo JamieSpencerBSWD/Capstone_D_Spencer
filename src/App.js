@@ -17,7 +17,7 @@ function App() {
   const {user} = useAuthContext()
 
   return (
-    <div className='App'>
+    <div className='App' style={{backgroundColor: '#498576'}}>
       <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Navbar/>
         <div className='pages'>
