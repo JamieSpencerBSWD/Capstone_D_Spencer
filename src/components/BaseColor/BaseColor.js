@@ -3,7 +3,7 @@ import {useState} from 'react'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
-import { SwapHoriz } from '@material-ui/icons';
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import {
     Link,
 } from "react-router-dom";
@@ -43,7 +43,7 @@ const BaseColor = (props) => {
                         </div> */}
 
                     </div>
-                    <div className='clear-button' onClick={() => setHexShown(!hexShown)}>{hexShown? <div><SwapHoriz fontSize='large'/>{props.singlecolor.hsl.value}</div>: <div><SwapHoriz fontSize='large'/>{props.singlecolor.rgb.value}</div>}</div>
+                    <div className='clear-button' onClick={() => setHexShown(!hexShown)}>{hexShown? <div><SwapHorizIcon fontSize='large'/>{props.singlecolor.hsl.value}</div>: <div><SwapHorizIcon fontSize='large'/>{props.singlecolor.rgb.value}</div>}</div>
             </div>
         )
     }else{
